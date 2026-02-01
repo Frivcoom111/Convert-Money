@@ -42,7 +42,7 @@ body {
 }
 
 select {
-    appearance: none;
+  appearance: none;
 }
 
 label {
@@ -76,11 +76,11 @@ span {
 }
 
 .main-button-convert:hover {
-    opacity: 0.9;
+  opacity: 0.9;
 }
 
 .main-button-convert:active {
-    opacity: 0.7;
+  opacity: 0.7;
 }
 
 .main-box {
@@ -105,5 +105,8 @@ p {
 }
 
 .value {
-    margin: 0 0 15px 0;
+  margin: 0 0 15px 0;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 18px;
 }
