@@ -14,21 +14,20 @@
 
     <main>
       <div class="main-content">
-        <label for="select-convert"
+        <label
           >Converter <span>de</span>
-          <select id="select-convert" class="box-input">
-            <option value="">R$ Real brasileiro</option>
-            <option value="">US$ Dólar americano</option>
-            <option value="">€ Euro</option>
+          <select class="box-input">
+            <option>R$ Real brasileiro</option>
           </select>
         </label>
 
         <label for="select-convert"
           >Converter <span>para</span>
           <select id="select-convert" class="box-input">
-            <option value="">US$ Dólar americano</option>
-            <option value="">R$ Real brasileiro</option>
-            <option value="">€ Euro</option>
+            <option value="dolar">US$ Dólar americano</option>
+            <option value="euro">€ Euro</option>
+            <option value="bitcoin">₿ Bitcoin</option>
+            <option value="libra">£ Libra</option>
           </select>
         </label>
 
@@ -46,17 +45,25 @@
 
         <div class="main-box">
           <div>
-              <img src="assets/real.png" alt="Real" class="img-coin logo-moeda-a-converter" />
-              <p class="currency">Real</p>
-              <p id="currency-value" class="value">R$ 0,00</p>
+            <img
+              src="assets/real.png"
+              alt="Real"
+              class="img-coin logo-moeda-a-converter"
+            />
+            <p>Real</p>
+            <p id="currency-value" class="value">R$ 0,00</p>
           </div>
 
           <img src="assets/arrow.png" alt="Arrow" class="img-arrow" />
 
           <div>
-              <img src="assets/dolar.png" alt="Dolar" class="img-coin logo-moeda-convertida" />
-              <p class="currency">Dólar Americano</p>
-              <p id="currency-value-converted" class="value">US$ 0.0</p>
+            <img
+              src="assets/dolar.png"
+              alt="Dolar"
+              class="img-coin logo-moeda-convertida"
+            />
+            <p class="name-currency">Dólar Americano</p>
+            <p id="currency-value-converted" class="value">US$ 0.0</p>
           </div>
         </div>
       </div>
