@@ -1,72 +1,64 @@
 <!doctype html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Conver Money</title>
-    <link rel="stylesheet" href="style.css" />
-    <script defer src="script.js"></script>
-  </head>
-  <body>
-    <header>
-      <img src="assets/logo.gif" alt="Logo" class="logo-gif" />
-    </header>
 
-    <main>
-      <div class="main-content">
-        <label
-          >Converter <span>de</span>
-          <select class="box-input">
-            <option>R$ Real brasileiro</option>
-          </select>
-        </label>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conver Money</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
 
-        <label for="select-convert"
-          >Converter <span>para</span>
-          <select id="select-convert" class="box-input">
-            <option value="dolar">US$ Dólar americano</option>
-            <option value="euro">€ Euro</option>
-            <option value="bitcoin">₿ Bitcoin</option>
-            <option value="libra">£ Libra</option>
-          </select>
-        </label>
+<body>
+  <header>
+    <img src="assets/logo.gif" alt="Logo" class="logo-gif" />
+  </header>
 
-        <label for="main-input"
-          ><span>Valor</span>
-          <input
-            type="number"
-            id="main-input"
-            placeholder="R$"
-            class="box-input"
-          />
-        </label>
+  <main>
+    <div class="main-content">
+      <label>Converter <span>de</span>
+        <select class="box-input select-currency-base">
+          <option value="real">R$ Real brasileiro</option>
+          <option value="dolar">US$ Dólar americano</option>
+          <option value="euro">€ Euro</option>
+          <option value="bitcoin">₿ Bitcoin</option>
+          <option value="libra">£ Libra</option>
+        </select>
+      </label>
+  
+      <label>Converter <span>para</span>
+        <select class="box-input select-currency-target">
+          <option value="dolar">US$ Dólar americano</option>
+          <option value="euro">€ Euro</option>
+          <option value="bitcoin">₿ Bitcoin</option>
+          <option value="libra">£ Libra</option>
+          <option value="real">R$ Real brasileiro</option>
+        </select>
+      </label>
 
-        <button class="main-button-convert">Convert</button>
+      <label for="main-input"><span>Valor</span>
+        <input type="number" id="main-input" placeholder="R$" class="box-input" />
+      </label>
 
-        <div class="main-box">
-          <div>
-            <img
-              src="assets/real.png"
-              alt="Real"
-              class="img-coin logo-moeda-a-converter"
-            />
-            <p>Real</p>
-            <p id="currency-value" class="value">R$ 0,00</p>
-          </div>
+      <button class="main-button-convert">Convert</button>
 
-          <img src="assets/arrow.png" alt="Arrow" class="img-arrow" />
+      <div class="main-box">
+        <div>
+          <img src="assets/real.png" class="img-coin logo-currency-convert" />
+          <p class="name-currency-to-convert">Real</p>
+          <p id="currency-value-to-convert" class="value">R$ 0,00</p>
+        </div>
 
-          <div>
-            <img
-              src="assets/dolar.png"
-              alt="Dolar"
-              class="img-coin logo-moeda-convertida"
-            />
-            <p class="name-currency">Dólar Americano</p>
-            <p id="currency-value-converted" class="value">US$ 0.0</p>
-          </div>
+        <img src="assets/arrow.png" alt="Arrow" class="img-arrow" />
+
+        <div>
+          <img src="assets/dolar.png" class="img-coin logo-currency-converted" />
+          <p class="name-converted-currency">Dólar Americano</p>
+          <p id="converted-currency-value" class="value">US$ 0.0</p>
         </div>
       </div>
-    </main>
-  </body>
+    </div>
+  </main>
+</body>
+
 </html>

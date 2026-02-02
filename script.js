@@ -1,84 +1,120 @@
 const convertButton = document.querySelector(".main-button-convert");
-const currencySelect = document.querySelector("#select-convert");
+const selectCurrencyBase = document.querySelector(".select-currency-base");
+const selectCurrencyTarget = document.querySelector(".select-currency-target");
 
-function convertValue() {
-  const inputConvertCurrencyValue = document.querySelector("#main-input").value;
-  const currencyValue = document.querySelector("#currency-value");
-  const currencyValueConverted = document.querySelector(
-    "#currency-value-converted",
-  );
-
-  // Valores das moedas
-  const dolarToday = 5.26;
-  const euroToday = 6.23;
-  const bitcoinToday = 412610.96;
-  const libraToday = 7.20;
-
-  // Ifs para formatação
-  if (currencySelect.value == "dolar") {
-    currencyValueConverted.innerHTML = new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-    }).format(inputConvertCurrencyValue / dolarToday);
+const currencies = {
+  real: {
+    rate: 1,
+    format: convertReal,
+    currencyImage: "assets/real.png",
+    currencyName: "Real"
+  },
+  dolar: {
+    rate: 5.26,
+    format: convertDolar,
+    currencyImage: "assets/dolar.png",
+    currencyName: "Dólar Americano"
+  },
+  euro: {
+    rate: 6.23,
+    format: convertEuro,
+    currencyImage: "assets/euro.png",
+    currencyName: "Euro"
+  },
+  bitcoin: {
+    rate: 412610.96,
+    format: convertBitcoin,
+    currencyImage: "assets/bitcoin.png",
+    currencyName: "Bitcoin"
+  },
+  libra: {
+    rate: 7.20,
+    format: convertLibra,
+    currencyImage: "assets/libra.png",
+    currencyName: "Libra"
   }
-
-  if (currencySelect.value == "euro") {
-    currencyValueConverted.innerHTML = new Intl.NumberFormat("de-DE", {
-      style: "currency",
-      currency: "EUR",
-    }).format(inputConvertCurrencyValue / euroToday);
-  }
-
-  if (currencySelect.value == "bitcoin") {
-    currencyValueConverted.innerHTML = new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "BTC",
-      minimumFractionDigits: 8,
-      maximumFractionDigits: 8
-    }).format(inputConvertCurrencyValue / bitcoinToday);
-  }
-
-  if (currencySelect.value == "libra") {
-    currencyValueConverted.innerHTML = new Intl.NumberFormat("de-DE", {
-        style: "currency",
-        currency: "GBP"
-    }).format(inputConvertCurrencyValue / libraToday);
-  }
-
-  // Mostra o valor convertido na tela
-  currencyValue.innerHTML = new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  }).format(inputConvertCurrencyValue);
 }
 
-function changeCurrency() {
-  const nameCurrency = document.querySelector(".name-currency");
-  const imageCurrency = document.querySelector(".logo-moeda-convertida");
+function convertValue() {
+  const inputConvertCurrencyValue = Number(document.querySelector("#main-input").value);
+  const currencyValueToConvert = document.querySelector("#currency-value-to-convert");
+  const convertedCurrencyValue = document.querySelector("#converted-currency-value");
 
-  if (currencySelect.value == "dolar") {
-    imageCurrency.src = "assets/dolar.png";
-    nameCurrency.innerHTML = "Dólar Americano";
-  }
+  const baseCurrency = selectCurrencyBase.value;
+  const targetCurrency = selectCurrencyTarget.value;
 
-  if (currencySelect.value == "euro") {
-    imageCurrency.src = "assets/euro.png";
-    nameCurrency.innerHTML = "Euro";
-  }
+  const convertedValue = (inputConvertCurrencyValue * currencies[baseCurrency].rate) / currencies[targetCurrency].rate;
 
-  if (currencySelect.value == "bitcoin") {
-    imageCurrency.src = "assets/bitcoin.png";
-    nameCurrency.innerHTML = "₿ Bitcoin";
-  }
+  currencyValueToConvert.innerHTML = currencies[baseCurrency].format(inputConvertCurrencyValue);
 
-  if (currencySelect.value == "libra") {
-    imageCurrency.src = "assets/libra.png";
-    nameCurrency.innerHTML = "Libra";
-  }
+  convertedCurrencyValue.innerHTML = currencies[targetCurrency].format(convertedValue);
+}
+
+function selectChange() {
+  const currencyBase = selectCurrencyBase.value;
+  const currencyTarget = selectCurrencyTarget.value;
+
+  document.querySelector(".name-currency-to-convert").innerHTML = currencies[currencyBase].currencyName;
+
+  document.querySelector(".name-converted-currency").innerHTML = currencies[currencyTarget].currencyName;
+
+  document.querySelector(".logo-currency-convert").src = currencies[currencyBase].currencyImage;
+
+  document.querySelector(".logo-currency-converted").src = currencies[currencyTarget].currencyImage;
 
   convertValue();
 }
 
-currencySelect.addEventListener("change", changeCurrency);
+function convertDolar(value) {
+  const valueDolar = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(value);
+
+  return valueDolar;
+}
+
+function convertEuro(value) {
+  const valueEuro = new Intl.NumberFormat("de-DE", {
+    style: "currency",
+    currency: "EUR",
+  }).format(value);
+
+  return valueEuro;
+}
+
+function convertBitcoin(value) {
+  const valueBitcoin = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "BTC",
+    minimumFractionDigits: 8,
+    maximumFractionDigits: 8
+  }).format(value);
+
+  return valueBitcoin;
+}
+
+function convertLibra(value) {
+  const valueLibra = new Intl.NumberFormat("de-DE", {
+    style: "currency",
+    currency: "GBP"
+  }).format(value);
+
+  return valueLibra;
+}
+
+function convertReal(value) {
+  const valueReal = new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  }).format(value);
+
+  return valueReal;
+}
+
+
+
+selectCurrencyBase.addEventListener("change", selectChange);
+selectCurrencyTarget.addEventListener("change", selectChange);
 
 convertButton.addEventListener("click", convertValue);
