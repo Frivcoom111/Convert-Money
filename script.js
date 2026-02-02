@@ -32,6 +32,12 @@ const currencies = {
     format: convertLibra,
     currencyImage: "assets/libra.png",
     currencyName: "Libra"
+  },
+  dinar: {
+    rate: 17.12,
+    format: convertDinar,
+    currencyImage: "assets/dinar.png",
+    currencyName: "Dinar Kuwaitiano"
   }
 }
 
@@ -112,7 +118,14 @@ function convertReal(value) {
   return valueReal;
 }
 
+function convertDinar(value) {
+  const valueDinar = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "KWD",
+  }).format(value);
 
+  return valueDinar;
+}
 
 selectCurrencyBase.addEventListener("change", selectChange);
 selectCurrencyTarget.addEventListener("change", selectChange);
